@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>2023/7/27上课总结 | Gridea</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ytxr.github.io/favicon.ico?v=1690973964228">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://ytxr.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://ytxr.github.io">
+        <img class="avatar" src="https://ytxr.github.io/images/avatar.png?v=1690973964228" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://ytxr.github.io">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">2023/7/27上课总结</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2023-07-27</span>
+            
+          </div>
+          <div class="post-content" v-pre>
+            <h1 id="2023727上课总结">2023/7/27上课总结</h1>
+<h2 id="1-全局区">1. 全局区</h2>
+<h2 id="外部变量全局变量">外部变量（全局变量）</h2>
+<h3 id="1作用域">1.作用域</h3>
+<p>整个应用程序，如果改变了外部变量，外部变量都会随之改变，可能会影响到整个程序。</p>
+<h3 id="2生命周期">2.生命周期</h3>
+<p>外部变量生命周期与程序生命周期一样。</p>
+<h3 id="3-存储位置">3. 存储位置</h3>
+<p>全局区（静态区）</p>
+<h3 id="4-生成时间">4. 生成时间</h3>
+<p>程序启动，外部变量生成。</p>
+<h3 id="5-外部变量的定义和使用">5. 外部变量的定义和使用</h3>
+<p>(1).外部变量必须在.h文件中声明<br>
+<code>extern int a; // 声明不要初始化</code><br>
+(2).外部变量的定义<br>
+在程序的任何一个.c文件都可以进行定义，但是必须引入.h文件。<br>
+外部变量只能定义一次，定义完后，其他文件可以使用但是不能再次定义。<br>
+外部变量定义的位置必须是所有函数的外部。</p>
+<h3 id="静态外部变量静态全局变量">静态外部变量（静态全局变量）</h3>
+<p>1.在变量前加上static关键字，在所有函数外定义就是静态外部变量，在函数内定义就是静态内部变量。<br>
+2.存储在全局区（静态区）<br>
+3.生命周期<br>
+与程序生命周期相同<br>
+4.作用域<br>
+本.c文件内，其他文件不能调用</p>
+<h2 id="内部变量局部变量">内部变量（局部变量）</h2>
+<h3 id="1-在函数体内定义的所有变量都是局部变量">1. 在函数体内定义的所有变量都是局部变量</h3>
+<h3 id="2-内部变量存储在栈区">2. 内部变量存储在栈区</h3>
+<h3 id="3-生命周期">3. 生命周期</h3>
+<p>函数执行调用这个变量时生成，函数运行结束后，这个内部变量被释放。</p>
+<h3 id="4-作用域">4. 作用域</h3>
+<p>函数体内</p>
+<h3 id="块级变量">块级变量</h3>
+<h4 id="1-在函数体内语句块内定义的变量就是块级变量">1. 在函数体内语句块内定义的变量就是块级变量</h4>
+<h4 id="2-块级变量存储在栈区">2. 块级变量存储在栈区</h4>
+<h4 id="3-生命周期-2">3. 生命周期</h4>
+<p>在语句块内调用时生成，语句块结束时释放</p>
+<h4 id="4-作用域-2">4. 作用域</h4>
+<p>语句块内</p>
+<h3 id="变量调用原则">变量调用原则</h3>
+<p>1.就近原则，如果函数内有这个变量就调用函数内的而不是外部的。</p>
+<h3 id="变量的错误定义">变量的错误定义</h3>
+<p>在一个.c文件中不能同时定义同名的外部和静态外部变量<br>
+在一个函数中不能同时定义同名的内部和静态内部变量</p>
+<h2 id="2-常量区">2. 常量区</h2>
+<p>常量区的相同字符串只有一个，所有指向同一个字符串的地址是相同的。<br>
+生命周期：程序员用指针=这个字符串起开始创建，知道程序结束被释放。<br>
+常量区字符串不能被改变。</p>
+<pre><code>    char *p = &quot;abc&quot;;
+	char *p1 = &quot;abc&quot;;
+	printf(&quot;%p\n&quot;, p);
+	printf(&quot;%c\n&quot;, p[0]);
+	printf(&quot;%p\n&quot;, p1);
+	printf(&quot;%c\n&quot;, p1[0]);
+</code></pre>
+<h2 id="3-栈区变量的管理">3. 栈区变量的管理</h2>
+<p>普通的变量都在栈区，eg:<code>int char double float 等等</code></p>
+<h2 id="4-代码区">4. 代码区</h2>
+<p>函数不加static就都是外部的，可以被全局调用<br>
+加static的函数是静态函数，只能被本.c文件调用，其他文件无法调用<br>
+<code>static void a(){}</code></p>
+<h3 id="函数指针">函数指针</h3>
+<p>函数也有地址，指向函数的指针就是函数指针</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+void a()
+{
+	printf(&quot;A\n&quot;);
+}
+
+
+int A(int a, int b)
+{
+	return a+b;
+}
+
+int main()
+{
+	a();
+	printf(&quot;%p\n&quot;, a);
+	
+	void (*p)();  // 函数指针的类型就是函数类型加指针加参数列表
+	p = a;
+	p();
+	
+	int (*p1)(int a, int b);
+	p1 = A;
+	int c = p1(100, 200);
+	printf(&quot;%d\n&quot;, c);
+}
+</code></pre>
+<hr>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://ytxr.github.io/post/2023726-ri-shang-ke-zong-jie/">
+              <h3 class="post-title">
+                下一篇：2023/7/26日上课总结
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">温故而知新</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://ytxr.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

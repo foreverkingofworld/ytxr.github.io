@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>2023/ 7/ 28 | Gridea</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ytxr.github.io/favicon.ico?v=1690973964228">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://ytxr.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://ytxr.github.io">
+        <img class="avatar" src="https://ytxr.github.io/images/avatar.png?v=1690973964228" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://ytxr.github.io">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">2023/ 7/ 28</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2023-07-28</span>
+            
+          </div>
+          <div class="post-content" v-pre>
+            <h1 id="2023-7-28">2023/ 7/ 28</h1>
+<h2 id="参数型函数指针">参数型函数指针</h2>
+<p>把函数指针作为函数的参数：<code> int jisuan(int x, int y, int (*p)(int m, int n))</code>这样可以直接调用函数，减少代码，不用改变主要函数，适合敏捷开发.<code>其中int (*p)(int m, int n)可以传入这种结构的函数来作为参数调用。</code></p>
+<h2 id="文件操作函数">文件操作函数</h2>
+<h3 id="fopen">fopen</h3>
+<pre><code>FILE *pf = fopen(&quot;aaa&quot;, &quot;w&quot;);
+/* 用一个结构体指针*pf来接收这个文件的操作，aaa是被操作文件路径，w是进行的操作（w,r,r+,w+,a,a+），之后对文件操作就通过pf*/
+</code></pre>
+<h3 id="fclose">fclose</h3>
+<p>对文件操作完后要调用fclose(pf)进行关闭</p>
+<h3 id="fprintf">fprintf</h3>
+<pre><code>fprintf(pf, &quot;id=%d\n&quot;, id); // 对文件进行写入，id的值是什么，就会写入什么数据
+</code></pre>
+<h3 id="fscanf">fscanf</h3>
+<pre><code>fscanf(pf, &quot;%d&quot;, &amp;id); // 对文件进行读取，文件中id是什么值就会读取出什么.
+</code></pre>
+<h3 id="fwrite">fwrite</h3>
+<pre><code>int a[5] = {1111,2222,3333,4444, 5555};
+int x = fwrite(a, sizeof(int), 5, pf);
+printf(&quot;%d\n&quot;, x);
+/*  a,传入被操作的地址，操作的数据多大，有几个这样的数据，从哪个文件。x是其返回值，返回值是操作成功多少个数据*/
+</code></pre>
+<h3 id="fread">fread</h3>
+<pre><code>int a[5] = {0};
+int x = fread(a, sizeof(int), 5, pf); // 对文件进行读取
+printf(&quot;%d\n&quot;, x);
+for (int i = 0; i &lt; 5; i++)
+{
+    printf(&quot;%d\n&quot;, a[i]);
+}
+</code></pre>
+<h3 id="fputc">fputc</h3>
+<pre><code>        char s[100] = &quot;axxx和花花世界级手机卡了好久&quot;;
+		int i = 0;
+		int x = 0;
+		for (i = 0; s[i] != '\0'; i++)
+		{
+			x = fputc(s[i], pf);
+			printf(&quot;x[%d]:%d\n&quot;, i, x);
+		}
+        对文件进行写入，一次写入一个字节，x是返回值，返回的是字符的码
+</code></pre>
+<h3 id="fgetc">fgetc</h3>
+<pre><code>        int s[100];
+		unsigned char str[100] = {'\0'}; // 防止放不下
+		int i = 0;
+		int x = 0;
+		for (i = 0; (s[i] = fgetc(pf)) != EOF; i++)
+		{ // EOF，文件结束
+			str[i] = s[i];
+			printf(&quot;s[%d]:%d\n&quot;, i, s[i]);
+		}
+		printf(&quot;%s\n&quot;, str);  一次读取一个字节
+</code></pre>
+<h3 id="fputs">fputs</h3>
+<pre><code>		char s[100] = &quot;axxx和花花世界级手机卡了好久\n&quot;;
+		char str[100] = &quot;hhhh第四轮；大家咳嗽等级&quot;;
+		int x = fputs(s, pf); // 俩个参数要被写入的地址，文件
+		x = fputs(str, pf);
+		printf(&quot;x:%d\n&quot;, x);
+        可以写入多个字符串，每个字符串都是新起一行，读到EFO和回车就会结束
+</code></pre>
+<h3 id="fgets">fgets</h3>
+<pre><code>        unsigned char s[100] = {'\0'};
+		char *p = fgets(s, 100, pf);
+		printf(&quot;%s\n&quot;, s);
+        三个参数，地址，读取大小，文件
+        读取到EFO或者换行就会结束
+</code></pre>
+<h3 id="stdin">stdin</h3>
+<pre><code class="language-stdin">        char s[100] = {'\0'};
+	    fgets(s, 100, stdin);
+	    printf(&quot;%s&quot;, s);
+	    return 0;
+</code></pre>
+<h3 id="在字符串输出时输出汉字连续输出三个字节的码可以组成该码的汉字">在字符串输出时，输出汉字，连续输出三个字节的码，可以组成该码的汉字</h3>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://ytxr.github.io/post/2023727-shang-ke-zong-jie/">
+              <h3 class="post-title">
+                下一篇：2023/7/27上课总结
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">温故而知新</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://ytxr.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

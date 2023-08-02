@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://ytxr.github.io</id>
+    <title>Gridea</title>
+    <updated>2023-08-02T10:59:26.260Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://ytxr.github.io"/>
+    <link rel="self" href="https://ytxr.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://ytxr.github.io/images/avatar.png</logo>
+    <icon>https://ytxr.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2023, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[# 2023/8/2每日总结]]></title>
+        <id>https://ytxr.github.io/post/202382-mei-ri-zong-jie/</id>
+        <link href="https://ytxr.github.io/post/202382-mei-ri-zong-jie/">
+        </link>
+        <updated>2023-08-02T10:59:14.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="202382每日总结">2023/8/2每日总结</h1>
+<h2 id="makefile文件">makefile文件</h2>
+<pre><code>object=main.o a.o b.o
+main:$(object)
+	gcc -o main $(object)
+main.o: a.h b.h
+a.o: a.h
+b.o: b.h
+.PHONY:clean
+clean:
+	-rm main $(object)
+</code></pre>
+<h2 id="gdb调试工具">GDB调试工具</h2>
+<pre><code>1. gdb test  // 启动gdb
+2. list       // 列出源代码
+3. break 16     // 设置断点在16行
+4. break func   // 设置断点在func函数入口
+5. run        // 运行程序
+6. next      // 单挑语句执行
+7. print i      // 打印i
+8. p i
+9. continue     // 继续运行
+10. bt          // 查看程序堆栈
+11. finsh       // 退出程序
+12. quit        // 退出gdb
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2023/8/1每日总结]]></title>
+        <id>https://ytxr.github.io/post/202381-mei-ri-zong-jie/</id>
+        <link href="https://ytxr.github.io/post/202381-mei-ri-zong-jie/">
+        </link>
+        <updated>2023-08-01T10:56:53.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="202381每日总结">2023/8/1每日总结</h1>
+<h2 id="memmove">memmove</h2>
+<p><code>void * memmove(void * dst, void * src, size_t count)</code></p>
+<h2 id="memcpy">memcpy</h2>
+<p><code>void * memcpy(void * dst, void * src, size_t count)</code><br>
+memcpy()和memmove()都是c语言的库函数(头文件保护#include &lt;string.h&gt;)，作用是拷贝一定长度内存的内容。它们唯一的区别是当内存发生局部重叠时，memmove可以保证拷贝正确，memcpy拷贝的结果是未定义的（取决于编译平台内部对memcpy的优化处理）</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2023/7/31上课总结]]></title>
+        <id>https://ytxr.github.io/post/2023731-shang-ke-zong-jie/</id>
+        <link href="https://ytxr.github.io/post/2023731-shang-ke-zong-jie/">
+        </link>
+        <updated>2023-08-01T10:49:40.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="2023731上课总结">2023/7/31上课总结</h1>
+<h2 id="函数指针与指针函数">函数指针与指针函数</h2>
+<h3 id="函数指针指向函数的指针主要应用是函数指针作为参数">函数指针，指向函数的指针，主要应用是函数指针作为参数</h3>
+<h3 id="指针函数返回值是指针的叫做指针函数">指针函数，返回值是指针的叫做指针函数</h3>
+<h2 id="指针常量与常量指针">指针常量与常量指针</h2>
+<h3 id="指针常量指针是一个常量">指针常量，指针是一个常量</h3>
+<pre><code>    int a = 10;
+	int b = 20;
+	int *const p = &amp;a;
+	// p = &amp;b; // 指针的指向不能被改变
+	*p = 200;
+	printf(&quot;%d\n&quot;, *p);
+	printf(&quot;%d\n&quot;, a);
+</code></pre>
+<h3 id="常量指针常量是一个指针">常量指针，常量是一个指针</h3>
+<pre><code>    int a = 10;
+	const int *p = &amp;a; // *p不能被改变
+	int b = 100;
+	p = &amp;b;
+	printf(&quot;%d\n&quot;, *p);
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2023/ 7/ 28]]></title>
+        <id>https://ytxr.github.io/post/2023-7-28/</id>
+        <link href="https://ytxr.github.io/post/2023-7-28/">
+        </link>
+        <updated>2023-07-28T11:21:20.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="2023-7-28">2023/ 7/ 28</h1>
+<h2 id="参数型函数指针">参数型函数指针</h2>
+<p>把函数指针作为函数的参数：<code> int jisuan(int x, int y, int (*p)(int m, int n))</code>这样可以直接调用函数，减少代码，不用改变主要函数，适合敏捷开发.<code>其中int (*p)(int m, int n)可以传入这种结构的函数来作为参数调用。</code></p>
+<h2 id="文件操作函数">文件操作函数</h2>
+<h3 id="fopen">fopen</h3>
+<pre><code>FILE *pf = fopen(&quot;aaa&quot;, &quot;w&quot;);
+/* 用一个结构体指针*pf来接收这个文件的操作，aaa是被操作文件路径，w是进行的操作（w,r,r+,w+,a,a+），之后对文件操作就通过pf*/
+</code></pre>
+<h3 id="fclose">fclose</h3>
+<p>对文件操作完后要调用fclose(pf)进行关闭</p>
+<h3 id="fprintf">fprintf</h3>
+<pre><code>fprintf(pf, &quot;id=%d\n&quot;, id); // 对文件进行写入，id的值是什么，就会写入什么数据
+</code></pre>
+<h3 id="fscanf">fscanf</h3>
+<pre><code>fscanf(pf, &quot;%d&quot;, &amp;id); // 对文件进行读取，文件中id是什么值就会读取出什么.
+</code></pre>
+<h3 id="fwrite">fwrite</h3>
+<pre><code>int a[5] = {1111,2222,3333,4444, 5555};
+int x = fwrite(a, sizeof(int), 5, pf);
+printf(&quot;%d\n&quot;, x);
+/*  a,传入被操作的地址，操作的数据多大，有几个这样的数据，从哪个文件。x是其返回值，返回值是操作成功多少个数据*/
+</code></pre>
+<h3 id="fread">fread</h3>
+<pre><code>int a[5] = {0};
+int x = fread(a, sizeof(int), 5, pf); // 对文件进行读取
+printf(&quot;%d\n&quot;, x);
+for (int i = 0; i &lt; 5; i++)
+{
+    printf(&quot;%d\n&quot;, a[i]);
+}
+</code></pre>
+<h3 id="fputc">fputc</h3>
+<pre><code>        char s[100] = &quot;axxx和花花世界级手机卡了好久&quot;;
+		int i = 0;
+		int x = 0;
+		for (i = 0; s[i] != '\0'; i++)
+		{
+			x = fputc(s[i], pf);
+			printf(&quot;x[%d]:%d\n&quot;, i, x);
+		}
+        对文件进行写入，一次写入一个字节，x是返回值，返回的是字符的码
+</code></pre>
+<h3 id="fgetc">fgetc</h3>
+<pre><code>        int s[100];
+		unsigned char str[100] = {'\0'}; // 防止放不下
+		int i = 0;
+		int x = 0;
+		for (i = 0; (s[i] = fgetc(pf)) != EOF; i++)
+		{ // EOF，文件结束
+			str[i] = s[i];
+			printf(&quot;s[%d]:%d\n&quot;, i, s[i]);
+		}
+		printf(&quot;%s\n&quot;, str);  一次读取一个字节
+</code></pre>
+<h3 id="fputs">fputs</h3>
+<pre><code>		char s[100] = &quot;axxx和花花世界级手机卡了好久\n&quot;;
+		char str[100] = &quot;hhhh第四轮；大家咳嗽等级&quot;;
+		int x = fputs(s, pf); // 俩个参数要被写入的地址，文件
+		x = fputs(str, pf);
+		printf(&quot;x:%d\n&quot;, x);
+        可以写入多个字符串，每个字符串都是新起一行，读到EFO和回车就会结束
+</code></pre>
+<h3 id="fgets">fgets</h3>
+<pre><code>        unsigned char s[100] = {'\0'};
+		char *p = fgets(s, 100, pf);
+		printf(&quot;%s\n&quot;, s);
+        三个参数，地址，读取大小，文件
+        读取到EFO或者换行就会结束
+</code></pre>
+<h3 id="stdin">stdin</h3>
+<pre><code class="language-stdin">        char s[100] = {'\0'};
+	    fgets(s, 100, stdin);
+	    printf(&quot;%s&quot;, s);
+	    return 0;
+</code></pre>
+<h3 id="在字符串输出时输出汉字连续输出三个字节的码可以组成该码的汉字">在字符串输出时，输出汉字，连续输出三个字节的码，可以组成该码的汉字</h3>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2023/7/27上课总结]]></title>
+        <id>https://ytxr.github.io/post/2023727-shang-ke-zong-jie/</id>
+        <link href="https://ytxr.github.io/post/2023727-shang-ke-zong-jie/">
+        </link>
+        <updated>2023-07-27T09:20:42.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="2023727上课总结">2023/7/27上课总结</h1>
+<h2 id="1-全局区">1. 全局区</h2>
+<h2 id="外部变量全局变量">外部变量（全局变量）</h2>
+<h3 id="1作用域">1.作用域</h3>
+<p>整个应用程序，如果改变了外部变量，外部变量都会随之改变，可能会影响到整个程序。</p>
+<h3 id="2生命周期">2.生命周期</h3>
+<p>外部变量生命周期与程序生命周期一样。</p>
+<h3 id="3-存储位置">3. 存储位置</h3>
+<p>全局区（静态区）</p>
+<h3 id="4-生成时间">4. 生成时间</h3>
+<p>程序启动，外部变量生成。</p>
+<h3 id="5-外部变量的定义和使用">5. 外部变量的定义和使用</h3>
+<p>(1).外部变量必须在.h文件中声明<br>
+<code>extern int a; // 声明不要初始化</code><br>
+(2).外部变量的定义<br>
+在程序的任何一个.c文件都可以进行定义，但是必须引入.h文件。<br>
+外部变量只能定义一次，定义完后，其他文件可以使用但是不能再次定义。<br>
+外部变量定义的位置必须是所有函数的外部。</p>
+<h3 id="静态外部变量静态全局变量">静态外部变量（静态全局变量）</h3>
+<p>1.在变量前加上static关键字，在所有函数外定义就是静态外部变量，在函数内定义就是静态内部变量。<br>
+2.存储在全局区（静态区）<br>
+3.生命周期<br>
+与程序生命周期相同<br>
+4.作用域<br>
+本.c文件内，其他文件不能调用</p>
+<h2 id="内部变量局部变量">内部变量（局部变量）</h2>
+<h3 id="1-在函数体内定义的所有变量都是局部变量">1. 在函数体内定义的所有变量都是局部变量</h3>
+<h3 id="2-内部变量存储在栈区">2. 内部变量存储在栈区</h3>
+<h3 id="3-生命周期">3. 生命周期</h3>
+<p>函数执行调用这个变量时生成，函数运行结束后，这个内部变量被释放。</p>
+<h3 id="4-作用域">4. 作用域</h3>
+<p>函数体内</p>
+<h3 id="块级变量">块级变量</h3>
+<h4 id="1-在函数体内语句块内定义的变量就是块级变量">1. 在函数体内语句块内定义的变量就是块级变量</h4>
+<h4 id="2-块级变量存储在栈区">2. 块级变量存储在栈区</h4>
+<h4 id="3-生命周期-2">3. 生命周期</h4>
+<p>在语句块内调用时生成，语句块结束时释放</p>
+<h4 id="4-作用域-2">4. 作用域</h4>
+<p>语句块内</p>
+<h3 id="变量调用原则">变量调用原则</h3>
+<p>1.就近原则，如果函数内有这个变量就调用函数内的而不是外部的。</p>
+<h3 id="变量的错误定义">变量的错误定义</h3>
+<p>在一个.c文件中不能同时定义同名的外部和静态外部变量<br>
+在一个函数中不能同时定义同名的内部和静态内部变量</p>
+<h2 id="2-常量区">2. 常量区</h2>
+<p>常量区的相同字符串只有一个，所有指向同一个字符串的地址是相同的。<br>
+生命周期：程序员用指针=这个字符串起开始创建，知道程序结束被释放。<br>
+常量区字符串不能被改变。</p>
+<pre><code>    char *p = &quot;abc&quot;;
+	char *p1 = &quot;abc&quot;;
+	printf(&quot;%p\n&quot;, p);
+	printf(&quot;%c\n&quot;, p[0]);
+	printf(&quot;%p\n&quot;, p1);
+	printf(&quot;%c\n&quot;, p1[0]);
+</code></pre>
+<h2 id="3-栈区变量的管理">3. 栈区变量的管理</h2>
+<p>普通的变量都在栈区，eg:<code>int char double float 等等</code></p>
+<h2 id="4-代码区">4. 代码区</h2>
+<p>函数不加static就都是外部的，可以被全局调用<br>
+加static的函数是静态函数，只能被本.c文件调用，其他文件无法调用<br>
+<code>static void a(){}</code></p>
+<h3 id="函数指针">函数指针</h3>
+<p>函数也有地址，指向函数的指针就是函数指针</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+void a()
+{
+	printf(&quot;A\n&quot;);
+}
+
+
+int A(int a, int b)
+{
+	return a+b;
+}
+
+int main()
+{
+	a();
+	printf(&quot;%p\n&quot;, a);
+	
+	void (*p)();  // 函数指针的类型就是函数类型加指针加参数列表
+	p = a;
+	p();
+	
+	int (*p1)(int a, int b);
+	p1 = A;
+	int c = p1(100, 200);
+	printf(&quot;%d\n&quot;, c);
+}
+</code></pre>
+<hr>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2023/7/26日上课总结]]></title>
+        <id>https://ytxr.github.io/post/2023726-ri-shang-ke-zong-jie/</id>
+        <link href="https://ytxr.github.io/post/2023726-ri-shang-ke-zong-jie/">
+        </link>
+        <updated>2023-07-27T04:43:51.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="2023726日上课总结">2023/7/26日上课总结</h1>
+<h2 id="堆区内存分配">堆区内存分配</h2>
+<h3 id="对已分配内存进行重新分配">对已分配内存进行重新分配</h3>
+<h4 id="malloc函数进行内存分配">malloc函数进行内存分配</h4>
+<h4 id="realloc函数进行内存再分配">realloc函数进行内存再分配</h4>
+<pre><code>p = (int *)realloc(p, sizeof(int) * 10);
+p是指向之前分配内存地址的指针
+
+realloc函数的俩种机制
+1.如果之前分配的内存地址下面连续的地址空间足够再分配，那么就在下面分配剩余需要的空间大小
+2.如果下面空间不足够或是已经被使用，则找一块足够大小的空间进行分配，保留之前空间的值，指针指向重新分配地址的首地址。
+</code></pre>
+<h3 id="堆区数组操作">堆区数组操作</h3>
+<h4 id="二维数组原理">二维数组原理</h4>
+<p>1.二维数组原理图</p>
+<figure data-type="image" tabindex="1"><img src="https://bhimgs.com/i/2023/07/27/m9n1bg.png" alt="avatar" loading="lazy"></figure>
+<p>2.实现动态二维数组</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int **two_dimensional_array(int n, int m)
+{
+	int **p = (int **)malloc(sizeof(int *) * n);
+	
+	for (int i = 0; i &lt; n; i++)
+	{
+		p[i] = (int *)malloc(sizeof(int) * m);
+	}
+
+	return p;
+}
+
+int **realloc_arr(int **p, int n, int m)
+{
+	p = (int **)realloc(p, sizeof(int *) * n);
+	
+	for (int i = 0; i &lt; n; i++)
+	{
+		p[i] = (int *)realloc(p[i], sizeof(int) * m);
+	}
+
+	return p;
+}
+
+void free_p(int **p, int n)
+{
+	for (int i = 0; i &lt; n; i++)
+	{
+		free(p[i]);
+	}
+	free(p);
+}
+
+int main()
+{
+	int a = 4, b = 5;
+	int **ptr = two_dimensional_array(a, b);
+	
+	for (int i = 0; i &lt; a; i++)
+	{
+		for (int j = 0; j &lt; b; j++)
+		{
+			ptr[i][j] = i*10 + j;
+		}
+	}
+	
+	for (int i = 0; i &lt; a; i++)
+	{
+		for (int j = 0; j &lt; b; j++)
+		{
+			printf(&quot;ptr[%d][%d]=%d\n&quot;, i, j, ptr[i][j]);
+		}
+	}
+	ptr = realloc_arr(ptr, 5, 6);
+	for (int i = 0; i &lt; 5; i++)
+	{
+		for (int j = 0; j &lt; 6; j++)
+		{
+			printf(&quot;ptr[%d][%d]=%d\n&quot;, i, j, ptr[i][j]);
+		}
+	}
+	free_p(ptr, 5);
+	ptr = NULL;
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2023/7/25日上课总结]]></title>
+        <id>https://ytxr.github.io/post/2023725-ri-shang-ke-zong-jie/</id>
+        <link href="https://ytxr.github.io/post/2023725-ri-shang-ke-zong-jie/">
+        </link>
+        <updated>2023-07-27T01:51:19.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="2023725日上课总结">2023/7/25日上课总结</h1>
+<h2 id="基本数据类型">基本数据类型</h2>
+<p>char<br>
+short<br>
+int<br>
+double<br>
+long<br>
+float</p>
+<h2 id="自定义数据类型">自定义数据类型</h2>
+<h3 id="结构体">结构体</h3>
+<h4 id="结构体内-按值传参和-按地址传参的不同">结构体内 按值传参和 按地址传参的不同</h4>
+<p>1.按值传递参数不会改变实参只会改变形参</p>
+<pre><code>按值传递参数：stu s = {111, &quot;张三&quot;, 90};
+调用结构体参数方式：
+s1.id
+s1.name
+s1.math
+</code></pre>
+<pre><code>按地址传递参数：
+    stu *p = NULL;
+	stu s = {111, &quot;张三&quot;, 90};
+	
+	p = &amp;s;
+调用结构体参数方式：
+p-&gt;id
+p-&gt;name
+p-&gt;math
+</code></pre>
+<pre><code>结构体定义：
+typedef struct student{
+	int id;
+	char name[32];
+	int math;
+}stu;
+</code></pre>
+<h3 id="结构体对齐原则">结构体对齐原则</h3>
+<pre><code>struct struct_b{
+	char c;
+	short s;
+	int i;
+	float f;
+	long l;
+	double d;
+};
+sizeof(struct struct_b) == 32 而不是 27
+因为其存在结构体对其原则
+    计算速度快
+    操作次数少
+    减少操作步骤
+</code></pre>
+<h3 id="共用体联合体">共用体/联合体</h3>
+<pre><code>union union_a{
+	char c;
+	short s;
+	int i;
+	float f;
+	long l;
+	double d;
+};
+共用一个最大的存储空间，每次调用其中的一个会覆盖上一个  
+sizeof(union_a) == 8
+</code></pre>
+<h3 id="枚举">枚举</h3>
+<pre><code>enum A{
+	a = 100,
+	b,
+	c,
+	d
+};
+下一个变量是上一个的+1
+调用时直接调用a
+</code></pre>
+<h2 id="内存分区">内存分区</h2>
+<h4 id="代码区">代码区</h4>
+<p>存放的全是二进制代码</p>
+<h4 id="静态区全局区">静态区(全局区)</h4>
+<p>存放全局变量和静态变量</p>
+<h4 id="常量区">常量区</h4>
+<p>存放常量(程序在运行的期间不能够被改变的量，例如: 10，字符串常量”abcde”， 数组的名字等)</p>
+<h4 id="栈区">栈区</h4>
+<p>存放变量</p>
+<h4 id="堆区">堆区</h4>
+<p>程序员自由管理的区域<br>
+也是唯一程序员有权限管理操作的内存区域</p>
+<h2 id="内存管理">内存管理</h2>
+<p>1.申请并分配内存<br>
+2.使用内存<br>
+3.释放内存</p>
+<h2 id="内存管理机制">内存管理机制</h2>
+<h3 id="1内存状态">1.内存状态</h3>
+<p>1.空闲状态<br>
+2.正在使用状态</p>
+<h3 id="2内存分配原则">2.内存分配原则</h3>
+<p>1.正在使用的内存不能分配<br>
+2.只有空闲的内存能分配，被分配后就是正在使用的内存<br>
+3.分配后使用完的内存一定要释放，释放后变为空闲内存<br>
+4.如果使用完后没释放，可能会造成内存泄漏</p>
+<pre><code>int main(){
+	int *p = (int *)malloc(sizeof(int)*5); // 分配内存
+	
+	for (int i = 0; i &lt; 5; i++){
+		p[i] = i * 10;  // 使用
+	}
+	
+	for (int i = 0; i &lt; 5; i++){
+		printf(&quot;%d\n&quot;, p[i]);``
+	}
+	free(p);    // 释放内存
+	p = NULL;   // 指针指向空，否则是野指针
+	
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>https://ytxr.github.io/post/hello-gridea/</id>
+        <link href="https://ytxr.github.io/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="https://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>

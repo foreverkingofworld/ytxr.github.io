@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>2023/7/25日上课总结 | Gridea</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ytxr.github.io/favicon.ico?v=1690973964228">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://ytxr.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://ytxr.github.io">
+        <img class="avatar" src="https://ytxr.github.io/images/avatar.png?v=1690973964228" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://ytxr.github.io">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">2023/7/25日上课总结</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2023-07-27</span>
+            
+          </div>
+          <div class="post-content" v-pre>
+            <h1 id="2023725日上课总结">2023/7/25日上课总结</h1>
+<h2 id="基本数据类型">基本数据类型</h2>
+<p>char<br>
+short<br>
+int<br>
+double<br>
+long<br>
+float</p>
+<h2 id="自定义数据类型">自定义数据类型</h2>
+<h3 id="结构体">结构体</h3>
+<h4 id="结构体内-按值传参和-按地址传参的不同">结构体内 按值传参和 按地址传参的不同</h4>
+<p>1.按值传递参数不会改变实参只会改变形参</p>
+<pre><code>按值传递参数：stu s = {111, &quot;张三&quot;, 90};
+调用结构体参数方式：
+s1.id
+s1.name
+s1.math
+</code></pre>
+<pre><code>按地址传递参数：
+    stu *p = NULL;
+	stu s = {111, &quot;张三&quot;, 90};
+	
+	p = &amp;s;
+调用结构体参数方式：
+p-&gt;id
+p-&gt;name
+p-&gt;math
+</code></pre>
+<pre><code>结构体定义：
+typedef struct student{
+	int id;
+	char name[32];
+	int math;
+}stu;
+</code></pre>
+<h3 id="结构体对齐原则">结构体对齐原则</h3>
+<pre><code>struct struct_b{
+	char c;
+	short s;
+	int i;
+	float f;
+	long l;
+	double d;
+};
+sizeof(struct struct_b) == 32 而不是 27
+因为其存在结构体对其原则
+    计算速度快
+    操作次数少
+    减少操作步骤
+</code></pre>
+<h3 id="共用体联合体">共用体/联合体</h3>
+<pre><code>union union_a{
+	char c;
+	short s;
+	int i;
+	float f;
+	long l;
+	double d;
+};
+共用一个最大的存储空间，每次调用其中的一个会覆盖上一个  
+sizeof(union_a) == 8
+</code></pre>
+<h3 id="枚举">枚举</h3>
+<pre><code>enum A{
+	a = 100,
+	b,
+	c,
+	d
+};
+下一个变量是上一个的+1
+调用时直接调用a
+</code></pre>
+<h2 id="内存分区">内存分区</h2>
+<h4 id="代码区">代码区</h4>
+<p>存放的全是二进制代码</p>
+<h4 id="静态区全局区">静态区(全局区)</h4>
+<p>存放全局变量和静态变量</p>
+<h4 id="常量区">常量区</h4>
+<p>存放常量(程序在运行的期间不能够被改变的量，例如: 10，字符串常量”abcde”， 数组的名字等)</p>
+<h4 id="栈区">栈区</h4>
+<p>存放变量</p>
+<h4 id="堆区">堆区</h4>
+<p>程序员自由管理的区域<br>
+也是唯一程序员有权限管理操作的内存区域</p>
+<h2 id="内存管理">内存管理</h2>
+<p>1.申请并分配内存<br>
+2.使用内存<br>
+3.释放内存</p>
+<h2 id="内存管理机制">内存管理机制</h2>
+<h3 id="1内存状态">1.内存状态</h3>
+<p>1.空闲状态<br>
+2.正在使用状态</p>
+<h3 id="2内存分配原则">2.内存分配原则</h3>
+<p>1.正在使用的内存不能分配<br>
+2.只有空闲的内存能分配，被分配后就是正在使用的内存<br>
+3.分配后使用完的内存一定要释放，释放后变为空闲内存<br>
+4.如果使用完后没释放，可能会造成内存泄漏</p>
+<pre><code>int main(){
+	int *p = (int *)malloc(sizeof(int)*5); // 分配内存
+	
+	for (int i = 0; i &lt; 5; i++){
+		p[i] = i * 10;  // 使用
+	}
+	
+	for (int i = 0; i &lt; 5; i++){
+		printf(&quot;%d\n&quot;, p[i]);``
+	}
+	free(p);    // 释放内存
+	p = NULL;   // 指针指向空，否则是野指针
+	
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://ytxr.github.io/post/hello-gridea/">
+              <h3 class="post-title">
+                下一篇：Hello Gridea
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">温故而知新</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://ytxr.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
